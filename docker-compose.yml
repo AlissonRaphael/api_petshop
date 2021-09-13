@@ -1,0 +1,36 @@
+version: "3.9"
+
+services:
+  postgres:
+    image: postgres
+    container_name: postgres_petshop
+    deploy:
+      resources:
+        limits:
+          memory: 2048M
+        reservations:
+          memory: 1024M
+    restart: always
+    network_mode: host
+    environment:
+      - POSTGRES_USER=docker
+      - POSTGRES_PASSWORD=12345
+      - POSTGRES_DB=petshop
+
+  mongodb:
+    image: mongo
+    container_name: mongodb_petshop
+    deploy:
+      resources:
+        limits:
+          memory: 2048M
+        reservations:
+          memory: 1024M
+    restart: always
+    network_mode: host
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: 12345
+      # MONGO_INITDB_DATABASE: petshop
+
+# mongodb://admin:12345@localhost:27017/petshop
