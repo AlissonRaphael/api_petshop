@@ -1,75 +1,131 @@
+# Petshop Store
+[![GitHub](https://img.shields.io/github/license/AlissonRaphael/api_petshop)](https://github.com/AlissonRaphael/api_petshop/blob/main/LICENSE)
+
+This repository contains all the files of an API aimed at the service and contracting of services of a petshop. Includes customer registration with the ability to register credit card, pet, addresses and store products. It has modules with CQRS for scheduling control, as well as chat with socket.io and GraphQL.
+
+## Techs
 <p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo_text.svg" width="320" alt="Nest Logo" /></a>
+  <img src="https://github.com/AlissonRaphael/api_petshop/blob/main/.github/readme_typescript.jpg">
+  <img src="https://github.com/AlissonRaphael/api_petshop/blob/main/.github/readme_nodejs.jpg">
+  <img src="https://github.com/AlissonRaphael/api_petshop/blob/main/.github/readme_nestjs.jpg">
+  <img src="https://github.com/AlissonRaphael/api_petshop/blob/main/.github/readme_typeorm.jpg">
+  <img src="https://github.com/AlissonRaphael/api_petshop/blob/main/.github/readme_postgres.jpg">
+  <img src="https://github.com/AlissonRaphael/api_petshop/blob/main/.github/readme_mongodb.jpg">
+  <img src="https://github.com/AlissonRaphael/api_petshop/blob/main/.github/readme_swagger.jpg">
 </p>
 
-[travis-image]: https://api.travis-ci.org/nestjs/nest.svg?branch=master
-[travis-url]: https://travis-ci.org/nestjs/nest
-[linux-image]: https://img.shields.io/travis/nestjs/nest/master.svg?label=linux
-[linux-url]: https://travis-ci.org/nestjs/nest
-  
-  <p align="center">A progressive <a href="http://nodejs.org" target="blank">Node.js</a> framework for building efficient and scalable server-side applications, heavily inspired by <a href="https://angular.io" target="blank">Angular</a>.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore"><img src="https://img.shields.io/npm/dm/@nestjs/core.svg" alt="NPM Downloads" /></a>
-<a href="https://travis-ci.org/nestjs/nest"><img src="https://api.travis-ci.org/nestjs/nest.svg?branch=master" alt="Travis" /></a>
-<a href="https://travis-ci.org/nestjs/nest"><img src="https://img.shields.io/travis/nestjs/nest/master.svg?label=linux" alt="Linux" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#5" alt="Coverage" /></a>
-<a href="https://gitter.im/nestjs/nestjs?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=body_badge"><img src="https://badges.gitter.im/nestjs/nestjs.svg" alt="Gitter" /></a>
-<a href="https://opencollective.com/nest#backer"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec"><img src="https://img.shields.io/badge/Donate-PayPal-dc3d53.svg"/></a>
-  <a href="https://twitter.com/nestframework"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
+<!-- ## Api
+<p align="center">
+  <img src="https://github.com/AlissonRaphael/api_petshop/blob/main/.github/readme_api.png">
+</p> -->
+
+## Database Relationship
+<p align="center">
+  <img width="70%" src="https://github.com/AlissonRaphael/api_petshop/blob/main/.github/readme_relationship.png">
 </p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
 
-## Description
+## Database Schemas
+```sh
+// User Schema
+{
+  username: { type: String, required: true, trim: true, index: { unique: true, } },
+  email: { type: String, required: true, trim: true },
+  password: { type: String, required: true, trim: true, },
+  roles: [{ type: String, required: true, enum: ['user', 'admin'], default: 'user' }],
+  active: { type: Boolean, required: true, default: true, },  
+}
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+//Customer Schema
+{
+  username: { type: String, required: true, },
+  document: { type: String, required: true, trim: true, index: { unique: true, }, },
+  pets: [
+    {
+      name: { type: String },
+      gender: { type: String, enum: ['male', 'female', 'none'] },
+      kind: { type: String },
+      brand: { type: String },
+    }
+  ],
+  billingAddress: [
+    {
+      zipCode: { type: String },
+      street: { type: String },
+      number: { type: String },
+      complement: { type: String },
+      neighborhood: { type: String },
+      city: { type: String },
+      state: { type: String },
+      country: { type: String },
+    },
+  ],
+  shippingAddress: [
+    {
+      zipCode: { type: String },
+      street: { type: String },
+      number: { type: String },
+      complement: { type: String },
+      neighborhood: { type: String },
+      city: { type: String },
+      state: { type: String },
+      country: { type: String },
+    },
+  ],
+  creditCard: [
+    { holder: { type: String }, number: { type: String }, expiration: { type: String } }
+  ],
+  user: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true, }
+}
+```
+
+## Contents
+- [Installation](#installation)
+- [Contact](#contact)
+- [License](#license)
 
 ## Installation
+Requires at least Node.js version 12 or later.
 
-```bash
-$ npm install
+### Windows:
+
+Download the Windows Installer directly from the website [nodejs.org](https://nodejs.org/en/download/).
+
+or via package manager:
+
+__Using chocolatay__
+```sh
+choco install nodejs.install
 ```
 
-## Running the app
+### Linux:
 
-```bash
-# development
-$ npm run start
+Download the linux binaries directly from the website [nodejs.org](https://nodejs.org/en/download/)
 
-# watch mode
-$ npm run start:dev
-
-# production mode
-$ npm run start:prod
+__Install a binary package via pkg__:
+```sh
+pkg install node
 ```
 
-## Test
+### macOS X:
 
-```bash
-# unit tests
-$ npm run test
+Download the macOS Installer directly from the website [nodejs.org](https://nodejs.org/en/download/).
 
-# e2e tests
-$ npm run test:e2e
+Via package manager:
 
-# test coverage
-$ npm run test:cov
+__Using brew__
+```sh
+brew install node
 ```
 
-## Support
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+### Clone
 
-## Stay in touch
+Clone this repo to your local machine using `https://github.com/AlissonRaphael/api_petshop.git`
 
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+## Contact
+- Github: [alissonraphael](https://gist.github.com/AlissonRaphael)
+- Twitter: [@AlissonRaphaeI](@AlissonRaphaeI)
 
 ## License
 
-  Nest is [MIT licensed](LICENSE).
+[![GitHub](https://img.shields.io/github/license/AlissonRaphael/api_petshop)](https://github.com/AlissonRaphael/api_petshop/blob/main/LICENSE)
