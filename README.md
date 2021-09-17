@@ -71,10 +71,14 @@ This repository contains all the files of an API aimed at the service and contra
       country: { type: String },
     },
   ],
-  creditCard: [
-    { holder: { type: String }, number: { type: String }, expiration: { type: String } }
-  ],
+  creditCard: [{ holder: { type: String }, number: { type: String }, expiration: { type: String } }],
   user: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true, }
+}
+
+// Room Schema
+{
+  customer_id: { type: String, required: true, trim: true },
+  date: { type: Date, required: true, default: true },
 }
 ```
 
