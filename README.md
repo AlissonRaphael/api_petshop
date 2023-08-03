@@ -10,7 +10,7 @@ This repository contains all the files of an API aimed at the service and contra
 ![GithubPages Badge](https://img.shields.io/badge/-TypeORM-000?style=flat-square&logo=typescript&logoColor=white&color=F40D12)
 ![GithubPages Badge](https://img.shields.io/badge/-PostgresSQL-000?style=flat-square&logo=postgresql&logoColor=white&color=4169E1)
 ![GithubPages Badge](https://img.shields.io/badge/-MongoDB-000?style=flat-square&logo=mongodb&logoColor=white&color=47A248)
-![GithubPages Badge](https://img.shields.io/badge/-Swagger-000?style=flat-square&logo=eslint&logoColor=black&color=85EA2D)
+![GithubPages Badge](https://img.shields.io/badge/-Swagger-000?style=flat-square&logo=swagger&logoColor=black&color=85EA2D)
 
 ## Contents
 - [Installation](#installation)
